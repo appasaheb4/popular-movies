@@ -97,8 +97,6 @@ export const Login = observer((props: LoginProps): JSX.Element => {
         },
       })
       .then(res => {
-        console.log({res});
-
         if (res.login.success === 1) {
           if (!res.login.data.user.passChanged) {
             Alert.alert('Please change password using web app');
