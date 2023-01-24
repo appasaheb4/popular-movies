@@ -1,25 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {FlatList} from 'react-native';
 import {observer} from 'mobx-react-lite';
 import {Box, Text, Button, IconsIonicons} from '@/library/components';
 import {useStores} from '@/store';
 import {useEffect} from 'react';
 import {PopularItem, ShowingItem} from '../components';
+import {Storage} from '@/library/modules';
+import {constants} from '@/library/utils/constants';
 
 export const Movies = observer(() => {
   const {moviesStore} = useStores();
+  const [userName, setUserName] = useState('');
+
+  const loadAsync = async () => {
+    setUserName(
+      (await Storage.getItemAsync(constants.isEmail))?.split('@')[0] || '',
+    );
+  };
 
   useEffect(() => {
     moviesStore.moviesService.popularList();
+    loadAsync();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Box width="100%" padding="sm" height="100%" backgroundColor="black">
-      <Box height="10%" flexDirection="row" justifyContent="space-between">
-        <IconsIonicons icon="menu" size={30} />
+      <Box height="5%" flexDirection="row" justifyContent="space-between">
         <Text color="primary" fontSize={18}>
-          FilmKu
+          Welcome {userName}
         </Text>
         <IconsIonicons icon="notifications-outline" size={24} />
       </Box>

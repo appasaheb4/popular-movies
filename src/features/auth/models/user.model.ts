@@ -69,6 +69,7 @@ export class Login {
   role: string;
   roleList: any[];
   userId: string;
+  email: string;
   fullName: string;
   password: string;
   passChanged: boolean;
@@ -94,6 +95,7 @@ export class Login {
     this.role = rawData.role;
     this.roleList = rawData.roleList;
     this.userId = rawData.userId;
+    this.email = rawData.email;
     this.fullName = rawData.fullName;
     this.password = rawData.password;
     this.passChanged = rawData.passChanged;

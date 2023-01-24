@@ -1,6 +1,7 @@
 export const constants = Object.freeze({
   isMobileNo: 'isMobileNo',
   accessToken: 'accessToken',
+  isEmail: 'isEmail',
   refreshToken: 'refreshToken',
   expireTime: 'expireTime',
   encryptionKey: 'encryptionKey',

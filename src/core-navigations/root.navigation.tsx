@@ -48,6 +48,7 @@ const Root = observer(() => {
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', backActionHandler);
   }, []);
+
   const root = () => {
     if (isLoggedIn) {
       return 'dashboardStack';

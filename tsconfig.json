@@ -4,12 +4,12 @@
   "compilerOptions": {
     "skipLibCheck": true,
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["./src/*"],
       "@features/*": ["./src/features/*"],
       "@components": ["./src/library/components/index"],
       "@core-components/*": ["./src/core-components/*"],
       "@core-navigations/*": ["./src/core-navigations/*"],
-      "@core-services/*": ["src/core-services/*"]
+      "@core-services/*": ["./src/core-services/*"]
     }
   }
 }

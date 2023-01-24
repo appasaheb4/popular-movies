@@ -54,9 +54,10 @@ export class AccountStore {
   };
 
   async login() {
-    const isMobileNo = await Storage.existAsync(constants.isMobileNo);
-    const isAccessToken = await Storage.existAsync(constants.accessToken);
-    if (isMobileNo && isAccessToken) {
+    // const isMobileNo = await Storage.existAsync(constants.isMobileNo);
+    // const isAccessToken = await Storage.existAsync(constants.accessToken);
+    const isEmail = await Storage.existAsync(constants.isEmail);
+    if (isEmail) {
       runInAction(() => {
         this.isLoggedIn = true;
       });
