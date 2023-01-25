@@ -16,7 +16,7 @@ export const ShowingItem = ({item, index}: ShowingItemProps) => {
             ? require('@/assets/images/temp/image7.png')
             : require('@/assets/images/temp/image8.png')
         }
-        style={{width: 150, height: 220, borderRadius: 10}}
+        style={{width: 150, height: 180, borderRadius: 10}}
       />
       <Box marginLeft="sm">
         <Text color="white">{item.title}</Text>

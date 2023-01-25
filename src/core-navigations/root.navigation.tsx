@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {observer} from 'mobx-react-lite';
@@ -8,6 +8,8 @@ import {useStores} from '@/store';
 
 import {AuthStack} from '../features/auth/navigations';
 import {Footer} from '../core-components/atoms/footer/Footer.component';
+
+import {FullScreenProgress} from '@/library/components';
 
 export const Stack = createNativeStackNavigator();
 //const journey = 'ROOT';
@@ -42,11 +44,15 @@ const backActionHandler = () => {
 };
 
 const Root = observer(() => {
+  const [loading, setLoading] = useState(true);
   const {
     accountStore: {isLoggedIn},
   } = useStores();
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', backActionHandler);
+    setTimeout(() => {
+      setLoading(false);
+    }, 200);
   }, []);
 
   const root = () => {
@@ -58,22 +64,26 @@ const Root = observer(() => {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator
-        initialRouteName={root()}
-        screenOptions={{
-          gestureEnabled: false,
-        }}>
-        {routes?.map(route => {
-          return (
-            <Stack.Screen
-              key={route.name}
-              name={route.name}
-              component={route.component}
-              options={{headerShown: false}}
-            />
-          );
-        })}
-      </Stack.Navigator>
+      {loading ? (
+        <FullScreenProgress />
+      ) : (
+        <Stack.Navigator
+          initialRouteName={root()}
+          screenOptions={{
+            gestureEnabled: false,
+          }}>
+          {routes?.map(route => {
+            return (
+              <Stack.Screen
+                key={route.name}
+                name={route.name}
+                component={route.component}
+                options={{headerShown: false}}
+              />
+            );
+          })}
+        </Stack.Navigator>
+      )}
     </NavigationContainer>
   );
 });
